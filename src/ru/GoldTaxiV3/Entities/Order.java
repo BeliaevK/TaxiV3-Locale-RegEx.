@@ -60,7 +60,7 @@ public class Order {
         this.needCarClass = needCarClass;
     }
 
-    public Car getCarReserver() {
+    public Object getCarReserver() {
         return carReserver;
     }
 

@@ -2,9 +2,9 @@ package ru.GoldTaxiV3.Utilities;
 
 import ru.GoldTaxiV3.Entities.Car;
 import ru.GoldTaxiV3.Entities.Driver;
+import ru.GoldTaxiV3.Entities.MyList;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -24,19 +24,25 @@ public class Initialization {
         return instance;
     }
 
-    public ArrayList<Car> initCarArray() throws IOException {
+    public MyList<Car> initCarArray() throws IOException {
         Random rdm = new Random();
-        ArrayList<Driver> driverArray = new ArrayList<Driver>();
+       // ArrayList<Driver> driverArray = new ArrayList<Driver>();
+        MyList<Driver> driverMyList = new MyList<Driver>();
         for (int i = 0; i < 10; i++) {
-            driverArray.add(new Driver(MyResourseBundle.getBundle().getString("driver") + " " + (i+1), "884825050" + i));
+            driverMyList.add(new Driver(MyResourseBundle.getBundle().getString("driver") + " " + (i+1), "884825050" + i));
+            //driverArray.add(new Driver(MyResourseBundle.getBundle().getString("driver") + " " + (i+1), "884825050" + i));
         }
-        ArrayList<Car> carArray = new ArrayList<Car>();
+        //ArrayList<Car> carArray = new ArrayList<Car>();
+        MyList<Car> carMyList  = new MyList<Car>();
         for (int i = 0; i < 10; i++) {
-            carArray.add(new Car(MyResourseBundle.getBundle().getString("car") + " " + (i+1), driverArray.get(i), "AA " + rdm.nextInt(999) + " A 163",
+            carMyList.add(new Car(MyResourseBundle.getBundle().getString("car") + " " + (i+1), driverMyList.get(i), "AA " + rdm.nextInt(999) + " A 163",
                     rdm.nextBoolean(), rdm.nextBoolean(), Car.getTypeOfClassEconomic(),
                     Car.getTypeOfStatusFree()));
+/*            carArray.add(new Car(MyResourseBundle.getBundle().getString("car") + " " + (i+1), driverMyList.get(i), "AA " + rdm.nextInt(999) + " A 163",
+                    rdm.nextBoolean(), rdm.nextBoolean(), Car.getTypeOfClassEconomic(),
+                    Car.getTypeOfStatusFree()));*/
         }
-        return carArray;
+        return carMyList;
     }
 
 

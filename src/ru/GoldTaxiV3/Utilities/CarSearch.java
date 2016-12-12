@@ -1,9 +1,8 @@
 package ru.GoldTaxiV3.Utilities;
 
 import ru.GoldTaxiV3.Entities.Car;
+import ru.GoldTaxiV3.Entities.MyList;
 import ru.GoldTaxiV3.Entities.Order;
-
-import java.util.ArrayList;
 
 /**
  * Created by Scala on 13.11.2016.
@@ -19,11 +18,11 @@ public class CarSearch {
         return instance;
     }
 
-    public static Car searchFreeCar(ArrayList<Car> carArrayList, Order order) {
+    public static Car searchFreeCar(MyList<Car> carArrayList, Order order) {
         Car reservedCar = null;
-        for (Car car : carArrayList) {
-            if (CarSearch.compareOrderToCar(car, order)) {
-                reservedCar = car;
+        for (int i = 0; i < carArrayList.size(); i++) {
+            if (compareOrderToCar(carArrayList.get(i), order)) {
+                reservedCar = carArrayList.get(i);
                 reservedCar.setCarStatus(Car.getTypeOfStatusReserved());
                 order.setCarReserver(reservedCar);
                 break;
