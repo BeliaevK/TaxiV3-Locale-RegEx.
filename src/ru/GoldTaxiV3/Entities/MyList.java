@@ -28,10 +28,9 @@ public class MyList<E> implements Iterable {
     }
 
     @Override
-    public void forEach(Consumer action) {
-
+    public Iterator iterator() {
+        return null;
     }
-
 
     private class ListItr implements ListIterator<E> {
         private Node<E> lastReturned;
