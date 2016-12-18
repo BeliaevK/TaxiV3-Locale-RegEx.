@@ -37,8 +37,8 @@ public class CarSearch {
 
     private static boolean compareOrderToCar(Car car, Order order) {
         boolean isSuitCar = true;
-        if (Car.getTypeOfStatusReserved().equals(car.getCarStatus()) | !(car.isBabySeat() == order.isNeedBabySeat()) |
-                !(car.isSmoking() == order.isNeedSmoking()) | !(car.getCarClass() == order.getNeedCarClass())) isSuitCar = false;
+        if (Car.getTypeOfStatusReserved().equals(car.getCarStatus()) || !(car.isBabySeat() == order.isNeedBabySeat()) ||
+                !(car.isSmoking() == order.isNeedSmoking()) || !(car.getCarClass() == order.getNeedCarClass())) isSuitCar = false;
         return isSuitCar;
     }
 }

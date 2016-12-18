@@ -5,6 +5,8 @@ import ru.GoldTaxiV3.Entities.Order;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 import static java.util.regex.Pattern.matches;
 
@@ -38,11 +40,11 @@ public class OrderReader {
                 try {
                     switch (orderField.length) {
                         case 2:
-                            order = new Order(orderField[0], orderField[1], false, false, 0);
+                            order = new Order(orderField[0], orderField[1], false, false, 0, new Date());
                             break;
                         case 5:
                             order = new Order(orderField[0], orderField[1], Boolean.parseBoolean(orderField[2]),
-                                    Boolean.parseBoolean(orderField[3]), Integer.parseInt(orderField[4]));
+                                    Boolean.parseBoolean(orderField[3]), Integer.parseInt(orderField[4]), new Date());
                             break;
                     }
                 } catch (NumberFormatException e) {
@@ -61,13 +63,11 @@ public class OrderReader {
         boolean isCorrect = true;
         String s = "[ул.|\\d]+\\s[а-яА-Я|a-zA-Z]+[\\,\\s]+[дД|sSt]+[\\.|\\s\\d]+";
         try {
-            if (orderText.length < 1 | orderText.length == 3 | orderText.length == 4) isCorrect = false;
+            if (orderText.length < 1 || orderText.length == 3 || orderText.length == 4) isCorrect = false;
             if (orderText[0].length() == 0 || orderText[1].length() == 0) isCorrect = false;
-            if ( !matches(s,orderText[0]) || !matches(s,orderText[1]))isCorrect = false;
+            if (!matches(s,orderText[0]) || !matches(s,orderText[1]))isCorrect = false;
         }
-        catch (NumberFormatException e) {
-            isCorrect = false;
-        } catch (ArrayIndexOutOfBoundsException e) {
+        catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             isCorrect = false;
         }
         return isCorrect;

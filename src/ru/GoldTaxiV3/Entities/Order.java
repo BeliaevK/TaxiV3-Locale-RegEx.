@@ -1,5 +1,9 @@
 package ru.GoldTaxiV3.Entities;
 
+import ru.GoldTaxiV3.Utilities.MyResourseBundle;
+
+import java.util.Date;
+
 /**
  * Created by Scala on 13.11.2016.
  */
@@ -11,13 +15,22 @@ public class Order {
     private int needCarClass;
     private Car carReserver;
     private Driver driverReserver;
+    private Date orderDate;
 
-    public Order (String startPoint, String endPoint, boolean needBabySeat, boolean needSmoking, int needCarClass) {
+    @Override
+    public String toString() {
+        return MyResourseBundle.getBundle().getString("startPoint") + ": " + this.startPoint + ", " +
+                MyResourseBundle.getBundle().getString("endPoint") + ": " + this.endPoint;
+    }
+
+
+    public Order (String startPoint, String endPoint, boolean needBabySeat, boolean needSmoking, int needCarClass, Date orderDate) {
         this.startPoint = startPoint;
         this.endPoint = endPoint;
         this.needBabySeat = needBabySeat;
         this.needSmoking = needSmoking;
         this.needCarClass = needCarClass;
+        this.orderDate = orderDate;
     }
 
     public String getStartPoint() {
@@ -75,4 +88,14 @@ public class Order {
     public void setDriverReserver(Driver driverReserver) {
         this.driverReserver = driverReserver;
     }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+
 }

@@ -3,8 +3,10 @@ package ru.GoldTaxiV3.Utilities;
 import ru.GoldTaxiV3.Entities.Car;
 import ru.GoldTaxiV3.Entities.Driver;
 import ru.GoldTaxiV3.Entities.MyList;
+import ru.GoldTaxiV3.Entities.Order;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -43,6 +45,11 @@ public class Initialization {
                     Car.getTypeOfStatusFree()));*/
         }
         return carMyList;
+    }
+
+    public LinkedList<Order> initQueueOrderList(){
+        LinkedList<Order> queueOrderList = new LinkedList<>();
+        return queueOrderList;
     }
 
 
