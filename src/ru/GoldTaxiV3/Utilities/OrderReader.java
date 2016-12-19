@@ -5,8 +5,9 @@ import ru.GoldTaxiV3.Entities.Order;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 import static java.util.regex.Pattern.matches;
 
@@ -29,9 +30,14 @@ public class OrderReader {
     }
 
     public Order orderRead() throws IOException {
+        Random rdm = new Random();
         System.out.println(MyResourseBundle.getBundle().getString("order"));
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Order order = null;
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MINUTE ,5);
+        Date date = calendar.getTime();
+
         boolean isCorrectOrder = false;
         while (!isCorrectOrder) {
             String orderText = reader.readLine();
@@ -40,11 +46,11 @@ public class OrderReader {
                 try {
                     switch (orderField.length) {
                         case 2:
-                            order = new Order(orderField[0], orderField[1], false, false, 0, new Date());
+                            order = new Order(orderField[0], orderField[1], false, false, 0, date);
                             break;
                         case 5:
                             order = new Order(orderField[0], orderField[1], Boolean.parseBoolean(orderField[2]),
-                                    Boolean.parseBoolean(orderField[3]), Integer.parseInt(orderField[4]), new Date());
+                                    Boolean.parseBoolean(orderField[3]), Integer.parseInt(orderField[4]), date);
                             break;
                     }
                 } catch (NumberFormatException e) {

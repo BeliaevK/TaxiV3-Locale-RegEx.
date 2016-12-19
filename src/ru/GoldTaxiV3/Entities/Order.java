@@ -17,6 +17,7 @@ public class Order {
     private Driver driverReserver;
     private Date orderDate;
 
+
     @Override
     public String toString() {
         return MyResourseBundle.getBundle().getString("startPoint") + ": " + this.startPoint + ", " +
@@ -24,7 +25,7 @@ public class Order {
     }
 
 
-    public Order (String startPoint, String endPoint, boolean needBabySeat, boolean needSmoking, int needCarClass, Date orderDate) {
+    public Order(String startPoint, String endPoint, boolean needBabySeat, boolean needSmoking, int needCarClass, Date orderDate) {
         this.startPoint = startPoint;
         this.endPoint = endPoint;
         this.needBabySeat = needBabySeat;
@@ -96,6 +97,5 @@ public class Order {
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
-
 
 }
