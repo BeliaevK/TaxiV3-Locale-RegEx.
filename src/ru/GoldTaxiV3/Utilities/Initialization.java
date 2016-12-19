@@ -47,6 +47,12 @@ public class Initialization {
         return carMyList;
     }
 
+    public LinkedList<Order> initOrderList(){
+        LinkedList<Order> orderList = new LinkedList<>();
+        return orderList;
+    }
+
+
     public LinkedList<Order> initQueueOrderList(){
         LinkedList<Order> queueOrderList = new LinkedList<>();
         return queueOrderList;
