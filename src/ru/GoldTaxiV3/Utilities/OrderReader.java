@@ -35,7 +35,7 @@ public class OrderReader {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Order order = null;
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MINUTE ,5);
+        calendar.add(Calendar.MINUTE ,1);
         Date date = calendar.getTime();
 
         boolean isCorrectOrder = false;

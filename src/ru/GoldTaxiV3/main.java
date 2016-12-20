@@ -15,19 +15,22 @@ import java.util.LinkedList;
 public class main {
 
     public static void main(String[] args) throws IOException {
-        Car freeCar;
+        Car orderCar;
         new MyThread();
-        Date courentDate = new Date();
         Initialization initialization = Initialization.getInstance();
         MyList<Car> carMyList = initialization.initCarArray();
         LinkedList<Order> queueOrderList = initialization.initQueueOrderList();
         LinkedList<Order> orderList = initialization.initOrderList();
         while (true) {
-            for (int i = 0; i < orderList.size(); i++) {
-                if (orderList.get(i).getOrderDate().after(courentDate)){
-                    freeCar = queueOrderList.get(i);
-                    /*Нужно добавить инфу о машине в заказ*/
+            Date courentDate = new Date();
+            for (Order anOrderList : orderList) {
+                if (anOrderList.getOrderDate().before(courentDate)) {
+                    orderCar = anOrderList.getCar();
+                    orderCar.setCarStatus(Car.getTypeOfStatusFree());
                 }
+            }
+            for (int i = 0; i < queueOrderList.size(); i++) {
+                queueOrderList.get(i).getCar();
             }
             Order order = OrderReader.getInstance().orderRead();
             Object reservedCar = CarSearch.getInstance().searchFreeCar(carMyList, order);
@@ -37,7 +40,7 @@ public class main {
             } else {
                 queueOrderList.add(order);
                 System.out.println(MyResourseBundle.getBundle().getString("waitCar"));
-                System.out.println(queueOrderList);
+               // System.out.println(queueOrderList);
             }
         }
     }

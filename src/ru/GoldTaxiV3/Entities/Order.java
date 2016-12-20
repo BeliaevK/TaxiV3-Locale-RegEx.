@@ -13,7 +13,7 @@ public class Order {
     private boolean needBabySeat;
     private boolean needSmoking;
     private int needCarClass;
-    private Car carReserver;
+    private Car car;
     private Driver driverReserver;
     private Date orderDate;
 
@@ -74,12 +74,12 @@ public class Order {
         this.needCarClass = needCarClass;
     }
 
-    public Object getCarReserver() {
-        return carReserver;
+    public Car getCar() {
+        return car;
     }
 
     public void setCarReserver(Car carReserver) {
-        this.carReserver = carReserver;
+        this.car = car;
     }
 
     public Driver getDriverReserver() {
