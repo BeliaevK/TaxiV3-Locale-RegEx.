@@ -78,7 +78,7 @@ public class Order {
         return car;
     }
 
-    public void setCarReserver(Car carReserver) {
+    public void setCar(Car car) {
         this.car = car;
     }
 

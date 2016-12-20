@@ -24,7 +24,7 @@ public class CarSearch {
             if (compareOrderToCar(carArrayList.get(i), order)) {
                 reservedCar = carArrayList.get(i);
                 reservedCar.setCarStatus(Car.getTypeOfStatusReserved());
-                order.setCarReserver(reservedCar);
+                order.setCar(reservedCar);
                 break;
             }
         }
@@ -35,7 +35,7 @@ public class CarSearch {
         }
     }
 
-    private static boolean compareOrderToCar(Car car, Order order) {
+    public static boolean compareOrderToCar(Car car, Order order) {
         boolean isSuitCar = true;
         if (Car.getTypeOfStatusReserved().equals(car.getCarStatus()) || !(car.isBabySeat() == order.isNeedBabySeat()) ||
                 !(car.isSmoking() == order.isNeedSmoking()) || !(car.getCarClass() == order.getNeedCarClass())) isSuitCar = false;
