@@ -25,6 +25,7 @@ public class CarSearch {
                 reservedCar = carArrayList.get(i);
                 reservedCar.setCarStatus(Car.getTypeOfStatusReserved());
                 order.setCar(reservedCar);
+                order.setOrderDate(OrderDate.getDate());
                 break;
             }
         }
