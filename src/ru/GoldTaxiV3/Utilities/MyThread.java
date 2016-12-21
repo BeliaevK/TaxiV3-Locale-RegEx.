@@ -3,13 +3,15 @@ package ru.GoldTaxiV3.Utilities;
 /**
  * Created by Scala on 18.12.2016.
  */
-public class MyThread implements Runnable {
+public class MyThread extends Thread /*implements Runnable */{
     Thread thread;
 
     public MyThread(){
         thread = new Thread();
-
     }
+
+
+
     @Override
     public void run() {
         if (thread != null) {
