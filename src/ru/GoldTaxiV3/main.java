@@ -14,7 +14,7 @@ import java.util.LinkedList;
 public class main {
 
     public static void main(String[] args) throws IOException {
-        new MyThread();
+        new MyThread().run();
         Initialization initialization = Initialization.getInstance();
         MyList<Car> carMyList = initialization.initCarArray();
         LinkedList<Order> queueOrderList = initialization.initQueueOrderList();
