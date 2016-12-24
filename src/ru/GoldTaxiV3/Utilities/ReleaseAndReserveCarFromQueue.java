@@ -3,6 +3,7 @@ package ru.GoldTaxiV3.Utilities;
 import ru.GoldTaxiV3.Entities.Car;
 import ru.GoldTaxiV3.Entities.MyList;
 import ru.GoldTaxiV3.Entities.Order;
+import ru.GoldTaxiV3.Utilities.Enums.TypeOfStatus;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -18,8 +19,8 @@ public class ReleaseAndReserveCarFromQueue {
             for (int i = 0; i < orderList.size(); i++) {
                 if (orderList.get(i).getOrderDate().before(courentDate)) {
                     orderCar = orderList.get(i).getCar();
-                    orderCar.setCarStatus(Car.getTypeOfStatusFree());
-                    System.out.println("***" + MyResourseBundle.getBundle().getString("carFree") + ": " + orderCar + "***");
+                    orderCar.setCarStatus(TypeOfStatus.FREE.getTypeOfStatus());
+                    System.out.println("***" + MyResourseBundle.getBundle().getString("free") + ": " + orderCar + "***");
                     orderList.remove(i);
                 }
             }
@@ -30,7 +31,7 @@ public class ReleaseAndReserveCarFromQueue {
             for (int j = 0; j < carMyList.size(); j++) {
                     if (CarSearch.compareOrderToCar(carMyList.get(j), queueOrderList.get(i))) {
                         orderCar = carMyList.get(j);
-                        orderCar.setCarStatus(Car.getTypeOfStatusReserved());
+                        orderCar.setCarStatus(TypeOfStatus.RESERVED.getTypeOfStatus());
                         queueOrderList.get(i).setCar(orderCar);
                         orderList.add(queueOrderList.get(i));
                         queueOrderList.get(i).setOrderDate(OrderDate.getDate());

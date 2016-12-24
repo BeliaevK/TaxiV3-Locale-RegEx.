@@ -42,7 +42,6 @@ public class MyLocale {
         }
     }
 
-
     private static boolean checkIsCorrectLocale(String s) {
         boolean isCorrectLocale = true;
         if (s.equals("ru") || s.equals("en")) isCorrectLocale = false;

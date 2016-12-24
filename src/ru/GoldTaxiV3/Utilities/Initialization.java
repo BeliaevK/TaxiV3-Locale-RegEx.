@@ -4,6 +4,8 @@ import ru.GoldTaxiV3.Entities.Car;
 import ru.GoldTaxiV3.Entities.Driver;
 import ru.GoldTaxiV3.Entities.MyList;
 import ru.GoldTaxiV3.Entities.Order;
+import ru.GoldTaxiV3.Utilities.Enums.TypeOfClass;
+import ru.GoldTaxiV3.Utilities.Enums.TypeOfStatus;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -38,8 +40,8 @@ public class Initialization {
         MyList<Car> carMyList  = new MyList<Car>();
         for (int i = 0; i < 10; i++) {
             carMyList.add(new Car(MyResourseBundle.getBundle().getString("car") + " " + (i+1), driverMyList.get(i), "AA " + rdm.nextInt(999) + " A 163",
-                    rdm.nextBoolean(), rdm.nextBoolean(), Car.getTypeOfClassEconomic(),
-                    Car.getTypeOfStatusFree()));
+                    rdm.nextBoolean(), rdm.nextBoolean(), TypeOfClass.ECONOMIC.getTypeOfClass(),
+                    TypeOfStatus.FREE.getTypeOfStatus()));
 /*            carArray.add(new Car(MyResourseBundle.getBundle().getString("car") + " " + (i+1), driverMyList.get(i), "AA " + rdm.nextInt(999) + " A 163",
                     rdm.nextBoolean(), rdm.nextBoolean(), Car.getTypeOfClassEconomic(),
                     Car.getTypeOfStatusFree()));*/
@@ -52,11 +54,9 @@ public class Initialization {
         return orderList;
     }
 
-
     public LinkedList<Order> initQueueOrderList(){
         LinkedList<Order> queueOrderList = new LinkedList<>();
         return queueOrderList;
     }
-
 
 }

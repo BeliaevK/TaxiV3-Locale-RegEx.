@@ -3,6 +3,7 @@ package ru.GoldTaxiV3.Utilities;
 import ru.GoldTaxiV3.Entities.Car;
 import ru.GoldTaxiV3.Entities.MyList;
 import ru.GoldTaxiV3.Entities.Order;
+import ru.GoldTaxiV3.Utilities.Enums.TypeOfStatus;
 
 /**
  * Created by Scala on 13.11.2016.
@@ -23,7 +24,7 @@ public class CarSearch {
         for (int i = 0; i < carArrayList.size(); i++) {
             if (compareOrderToCar(carArrayList.get(i), order)) {
                 reservedCar = carArrayList.get(i);
-                reservedCar.setCarStatus(Car.getTypeOfStatusReserved());
+                reservedCar.setCarStatus(TypeOfStatus.RESERVED.getTypeOfStatus());
                 order.setCar(reservedCar);
                 order.setOrderDate(OrderDate.getDate());
                 break;
@@ -38,7 +39,7 @@ public class CarSearch {
 
     public static boolean compareOrderToCar(Car car, Order order) {
         boolean isSuitCar = true;
-        if (Car.getTypeOfStatusReserved().equals(car.getCarStatus()) || !(car.isBabySeat() == order.isNeedBabySeat()) ||
+        if (TypeOfStatus.RESERVED.getTypeOfStatus().equals(car.getCarStatus()) || !(car.isBabySeat() == order.isNeedBabySeat()) ||
                 !(car.isSmoking() == order.isNeedSmoking()) || !(car.getCarClass() == order.getNeedCarClass())) isSuitCar = false;
         return isSuitCar;
     }

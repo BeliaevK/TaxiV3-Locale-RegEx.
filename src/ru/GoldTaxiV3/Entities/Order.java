@@ -17,13 +17,17 @@ public class Order {
     private Driver driverReserver;
     private Date orderDate;
 
-
     @Override
     public String toString() {
-        return MyResourseBundle.getBundle().getString("startPoint") + ": " + this.startPoint + ", " +
-                MyResourseBundle.getBundle().getString("endPoint") + ": " + this.endPoint;
+        return MyResourseBundle.getBundle().getString("startPoint") + ": " + startPoint + ", " +
+                MyResourseBundle.getBundle().getString("endPoint") + ": " + endPoint + ", " +
+                MyResourseBundle.getBundle().getString("babySeat") + ": " + needBabySeat + ", " +
+                MyResourseBundle.getBundle().getString("smoking") + ": " + needSmoking + ", " +
+                MyResourseBundle.getBundle().getString("carClass") + ": " + needCarClass + ", " +
+                MyResourseBundle.getBundle().getString("car") + ": " + car + ", " +
+                MyResourseBundle.getBundle().getString("driver") + ": " + driverReserver + ", " +
+                MyResourseBundle.getBundle().getString("orderDate") + ": " + orderDate + ".";
     }
-
 
     public Order(String startPoint, String endPoint, boolean needBabySeat, boolean needSmoking, int needCarClass, Date orderDate) {
         this.startPoint = startPoint;

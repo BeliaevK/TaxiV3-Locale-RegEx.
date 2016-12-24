@@ -13,10 +13,6 @@ public class Car {
     private boolean smoking;
     private int carClass;
     private String carStatus;
-    private static final int TYPE_OF_CLASS_ECONOMIC = 0;
-    private static final int TYPE_OF_CLASS_BUSYNESS = 1;
-    private static final String TYPE_OF_STATUS_FREE = "Свободен";
-    private static final String TYPE_OF_STATUS_RESERVED = "Занят";
 
     public Car(String carMark, Driver carDriver, String carNumber, boolean babySeat, boolean smoking, int carClass, String carStatus) {
         this.carMark = carMark;
@@ -26,23 +22,6 @@ public class Car {
         this.smoking = smoking;
         this.carClass = carClass;
         this.setCarStatus(carStatus);
-    }
-
-
-    public static int getTypeOfClassEconomic() {
-        return TYPE_OF_CLASS_ECONOMIC;
-    }
-
-    public static int getTypeOfClassBusyness() {
-        return TYPE_OF_CLASS_BUSYNESS;
-    }
-
-    public static String getTypeOfStatusFree() {
-        return TYPE_OF_STATUS_FREE;
-    }
-
-    public static String getTypeOfStatusReserved() {
-        return TYPE_OF_STATUS_RESERVED;
     }
 
     public String getCarMark() {
@@ -103,8 +82,11 @@ public class Car {
 
     @Override
     public String toString() {
-        return this.carMark  + ", " + MyResourseBundle.getBundle().getString("carnumber") + ": " + this.carNumber+ ", "
-                + MyResourseBundle.getBundle().getString("driver") + ": "  + this.carDriver.getName() + ", " +
-                MyResourseBundle.getBundle().getString("telephone") + ": " + this.carDriver.getTelephone() + ".";
+        return carMark  + ", " + MyResourseBundle.getBundle().getString("carnumber") + ": " + carNumber+ ", "
+                + MyResourseBundle.getBundle().getString("driver") + ": "  + carDriver.getName() + ", " +
+                MyResourseBundle.getBundle().getString("telephone") + ": " + carDriver.getTelephone() + ", "+
+                MyResourseBundle.getBundle().getString("babySeat") + ": " + babySeat + ", "+
+                MyResourseBundle.getBundle().getString("smoking") + ": " + smoking + ", "+
+                MyResourseBundle.getBundle().getString("carClass") + ": " + carClass + ". ";
     }
 }
