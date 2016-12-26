@@ -13,7 +13,7 @@ public class Order {
     private boolean needBabySeat;
     private boolean needSmoking;
     private int needCarClass;
-    private Car car;
+    private volatile Car car;
     private Driver driverReserver;
     private Date orderDate;
 

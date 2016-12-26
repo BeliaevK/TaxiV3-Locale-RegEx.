@@ -14,23 +14,24 @@ import java.util.LinkedList;
 public class main {
 
     public static void main(String[] args) throws IOException {
-/*        Thread myThread =  new MyThread();
-        myThread.start();*/
         Initialization initialization = Initialization.getInstance();
         MyList<Car> carMyList = initialization.initCarArray();
         LinkedList<Order> queueOrderList = initialization.initQueueOrderList();
         LinkedList<Order> orderList = initialization.initOrderList();
+        ThreadForFreeCar threadForFreeCar =  new ThreadForFreeCar(orderList);
+        threadForFreeCar.start();
         while (true) {
-            ReleaseAndReserveCarFromQueue.ReleaseCarFromWork(orderList);
             ReleaseAndReserveCarFromQueue.ReserveCarFromQueue(orderList,queueOrderList,carMyList);
             Order order = OrderReader.getInstance().orderRead();
-            Object reservedCar = CarSearch.getInstance().searchFreeCar(carMyList, order);
+            Car reservedCar = CarSearch.getInstance().searchFreeCar(carMyList, order);
             if (reservedCar != null){
                 orderList.add(order);
                 System.out.println(MyResourseBundle.getBundle().getString("appointed") + ": "+ reservedCar);
                // System.out.println(queueOrderList.size());
             } else {
-                queueOrderList.add(order);
+                ThreadForCheckCar threadForCheckCar =  new ThreadForCheckCar(carMyList,order);
+                threadForCheckCar.start();
+/*                queueOrderList.add(order);*/
                 System.out.println(MyResourseBundle.getBundle().getString("waitCar"));
                // System.out.println(queueOrderList.size());
             }
