@@ -43,8 +43,8 @@ public class Initialization {
                     rdm.nextBoolean(), rdm.nextBoolean(), TypeOfClass.ECONOMIC.getTypeOfClass(),
                     TypeOfStatus.FREE.getTypeOfStatus()));
 /*            carArray.add(new Car(MyResourseBundle.getBundle().getString("car") + " " + (i+1), driverMyList.get(i), "AA " + rdm.nextInt(999) + " A 163",
-                    rdm.nextBoolean(), rdm.nextBoolean(), Car.getTypeOfClassEconomic(),
-                    Car.getTypeOfStatusFree()));*/
+                    rdm.nextBoolean(), rdm.nextBoolean(), TypeOfClass.ECONOMIC.getTypeOfClass(),
+                    TypeOfStatus.FREE.getTypeOfStatus())));*/
         }
         return carMyList;
     }

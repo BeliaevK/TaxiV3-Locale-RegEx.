@@ -27,11 +27,11 @@ public class ThreadForCheckCar extends Thread {
             thread.run();
         }
             try {
-                for (int i = 0; i < 60; i++) {
-                    if (order.getCar() != null) {
+                for (int i = 1; i < 60; i++) {
+                   if (order.getCar() != null) {
                         thread.interrupt();
                     } else {
-                        System.out.println("Проход:" + i);
+                       // System.out.println("Проход проверки:" + i);
                         for (int j = 0; j < carMyList.size(); j++) {
                             if (CarSearch.compareOrderToCar((Car) carMyList.get(j), order)) {
                                 orderCar = (Car) carMyList.get(j);
@@ -39,14 +39,14 @@ public class ThreadForCheckCar extends Thread {
                                 order.setCar(orderCar);
                                 order.setOrderDate(OrderDate.getDate());
                                 System.out.println("***" + MyResourseBundle.getBundle().getString("appointedfromqueue") + ": " + orderCar + "***");
-                                break;
                             }
-                            Thread.sleep(1000);
+                            Thread.sleep(100);
                         }
                     }
                 }
                 if (order.getCar() == null) {
                     System.out.println(MyResourseBundle.getBundle().getString("orderTimeOut") + ": " + order);
+                    order.setStartPoint(null);
                 }
             } catch (InterruptedException e) {}
     }

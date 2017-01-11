@@ -16,6 +16,9 @@ public class ReleaseAndReserveCarFromQueue {
 
         public static void ReleaseCarFromWork(LinkedList<Order> orderList) {
             Date courentDate = new Date();
+/*            if(orderList.size() == 0){
+                System.out.println("Нет занятых машин");
+            }*/
             for (int i = 0; i < orderList.size(); i++) {
                 if (orderList.get(i).getOrderDate().before(courentDate)) {
                     orderCar = orderList.get(i).getCar();
@@ -28,6 +31,9 @@ public class ReleaseAndReserveCarFromQueue {
 
     public static void ReserveCarFromQueue(LinkedList<Order> orderList, LinkedList<Order> queueOrderList,  MyList<Car> carMyList) {
         for (int i = 0; i < queueOrderList.size(); i++) {
+            if (queueOrderList.get(i).getStartPoint() == null){
+                queueOrderList.remove(i);
+            }else
             for (int j = 0; j < carMyList.size(); j++) {
                     if (CarSearch.compareOrderToCar(carMyList.get(j), queueOrderList.get(i))) {
                         orderCar = carMyList.get(j);
@@ -36,9 +42,8 @@ public class ReleaseAndReserveCarFromQueue {
                         orderList.add(queueOrderList.get(i));
                         queueOrderList.get(i).setOrderDate(OrderDate.getDate());
                         System.out.println("***" + MyResourseBundle.getBundle().getString("appointedfromqueue") + ": " + orderCar + "***");
-                        //System.out.println(queueOrderList.size());
                         queueOrderList.remove(i);
-                        break;
+                        System.out.println("Длина очереди: " + queueOrderList.size());
                     }
             }
         }

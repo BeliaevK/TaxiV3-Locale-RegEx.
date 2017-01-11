@@ -1,5 +1,7 @@
 package ru.GoldTaxiV3.Utilities;
 
+import ru.GoldTaxiV3.Entities.Car;
+import ru.GoldTaxiV3.Entities.MyList;
 import ru.GoldTaxiV3.Entities.Order;
 
 import java.util.LinkedList;
@@ -10,9 +12,13 @@ import java.util.LinkedList;
 public class ThreadForFreeCar extends Thread /*implements Runnable */{
     private Thread thread;
     private LinkedList<Order> orderList;
+    private LinkedList<Order> queueOrderList;
+    private MyList<Car> carMyList;
 
-    public ThreadForFreeCar(LinkedList<Order> orderList){
+    public ThreadForFreeCar(LinkedList<Order> orderList, LinkedList<Order> queueOrderList, MyList<Car> carMyList){
         this.orderList = orderList;
+        this.queueOrderList = queueOrderList;
+        this.carMyList = carMyList;
         thread = new Thread();
     }
 
@@ -23,8 +29,10 @@ public class ThreadForFreeCar extends Thread /*implements Runnable */{
         }
         while (true){
             try {
+               // System.out.println("Проход освобождения");
                 ReleaseAndReserveCarFromQueue.ReleaseCarFromWork(orderList);
-                Thread.sleep(1000);
+                ReleaseAndReserveCarFromQueue.ReserveCarFromQueue(orderList,queueOrderList,carMyList);
+                Thread.sleep(100);
             } catch (InterruptedException e) {}
         }
     }

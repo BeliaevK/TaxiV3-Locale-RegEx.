@@ -21,7 +21,7 @@ public class CarSearch {
         return instance;
     }
 
-    public static Car searchFreeCar(MyList<Car> carArrayList, Order order) {
+    public static Car searchFreeCar(MyList<Car> carArrayList, Order order,LinkedList<Order> queueOrderList) {
         Car reservedCar = null;
         for (int i = 0; i < carArrayList.size(); i++) {
             if (compareOrderToCar(carArrayList.get(i), order)) {
@@ -29,10 +29,11 @@ public class CarSearch {
                 reservedCar.setCarStatus(TypeOfStatus.RESERVED.getTypeOfStatus());
                 order.setCar(reservedCar);
                 order.setOrderDate(OrderDate.getDate());
-                break;
             }
         }
         if (reservedCar == null) {
+            System.out.println("Этот заказ добавлен в очередь");
+            queueOrderList.add(order);
             return null;
         } else {
             return reservedCar;
@@ -43,13 +44,10 @@ public class CarSearch {
         if (reservedCar != null){
             orderList.add(order);
             System.out.println(MyResourseBundle.getBundle().getString("appointed") + ": "+ reservedCar);
-            // System.out.println(queueOrderList.size());
         } else {
             ThreadForCheckCar threadForCheckCar =  new ThreadForCheckCar(carMyList,order);
             threadForCheckCar.start();
-/*                queueOrderList.add(order);*/
             System.out.println(MyResourseBundle.getBundle().getString("waitCar"));
-            // System.out.println(queueOrderList.size());
         }
     }
 
