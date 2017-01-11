@@ -59,4 +59,9 @@ public class Initialization {
         return queueOrderList;
     }
 
+    public static Order initOrder(int numberStartPoint, int numberEndPoint){
+        return new Order("ул. Ленина, д. " + numberStartPoint, "ул. Мира, д. " + numberEndPoint, Boolean.parseBoolean(String.valueOf(0)),
+                 Boolean.parseBoolean(String.valueOf(0)), Integer.parseInt(String.valueOf(0)), null);
+    }
+
 }

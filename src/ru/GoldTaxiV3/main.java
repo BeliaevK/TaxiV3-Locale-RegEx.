@@ -18,23 +18,30 @@ public class main {
         MyList<Car> carMyList = initialization.initCarArray();
         LinkedList<Order> queueOrderList = initialization.initQueueOrderList();
         LinkedList<Order> orderList = initialization.initOrderList();
+        for (int i = 0; i < 20; i++) {
+            Order fakeOrder = initialization.initOrder(i,i);
+            queueOrderList.add(fakeOrder);
+/*            Car reservedCar = CarSearch.getInstance().searchFreeCar(carMyList, fakeOrder);
+            CarSearch.reservedCar(reservedCar,fakeOrder,carMyList,orderList);*/
+        }
         ThreadForFreeCar threadForFreeCar =  new ThreadForFreeCar(orderList);
         threadForFreeCar.start();
         while (true) {
             ReleaseAndReserveCarFromQueue.ReserveCarFromQueue(orderList,queueOrderList,carMyList);
             Order order = OrderReader.getInstance().orderRead();
             Car reservedCar = CarSearch.getInstance().searchFreeCar(carMyList, order);
-            if (reservedCar != null){
+            CarSearch.reservedCar(reservedCar,order,carMyList,orderList);
+/*            if (reservedCar != null){
                 orderList.add(order);
                 System.out.println(MyResourseBundle.getBundle().getString("appointed") + ": "+ reservedCar);
                // System.out.println(queueOrderList.size());
             } else {
                 ThreadForCheckCar threadForCheckCar =  new ThreadForCheckCar(carMyList,order);
                 threadForCheckCar.start();
-/*                queueOrderList.add(order);*/
+*//*                queueOrderList.add(order);*//*
                 System.out.println(MyResourseBundle.getBundle().getString("waitCar"));
                // System.out.println(queueOrderList.size());
-            }
+            }*/
         }
     }
 

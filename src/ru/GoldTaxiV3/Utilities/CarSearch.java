@@ -5,6 +5,8 @@ import ru.GoldTaxiV3.Entities.MyList;
 import ru.GoldTaxiV3.Entities.Order;
 import ru.GoldTaxiV3.Utilities.Enums.TypeOfStatus;
 
+import java.util.LinkedList;
+
 /**
  * Created by Scala on 13.11.2016.
  */
@@ -34,6 +36,20 @@ public class CarSearch {
             return null;
         } else {
             return reservedCar;
+        }
+    }
+
+    public static void reservedCar (Car reservedCar, Order order, MyList<Car> carMyList,LinkedList<Order> orderList){
+        if (reservedCar != null){
+            orderList.add(order);
+            System.out.println(MyResourseBundle.getBundle().getString("appointed") + ": "+ reservedCar);
+            // System.out.println(queueOrderList.size());
+        } else {
+            ThreadForCheckCar threadForCheckCar =  new ThreadForCheckCar(carMyList,order);
+            threadForCheckCar.start();
+/*                queueOrderList.add(order);*/
+            System.out.println(MyResourseBundle.getBundle().getString("waitCar"));
+            // System.out.println(queueOrderList.size());
         }
     }
 

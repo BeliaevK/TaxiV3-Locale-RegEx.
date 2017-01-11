@@ -41,7 +41,7 @@ public class ThreadForCheckCar extends Thread {
                                 System.out.println("***" + MyResourseBundle.getBundle().getString("appointedfromqueue") + ": " + orderCar + "***");
                                 break;
                             }
-                            Thread.sleep(100);
+                            Thread.sleep(1000);
                         }
                     }
                 }
